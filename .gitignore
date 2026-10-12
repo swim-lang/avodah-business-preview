@@ -4,3 +4,5 @@ node_modules/
 # internal review notes (copy captures with issue lists) stay local
 content/
 CONTENT-INVENTORY.md
+.vercel
+.env*
