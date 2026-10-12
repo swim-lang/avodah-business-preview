@@ -1,0 +1,6 @@
+.DS_Store
+node_modules/
+.vercel/
+# internal review notes (copy captures with issue lists) stay local
+content/
+CONTENT-INVENTORY.md
