@@ -1,8 +1,548 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
-  "buildCommand": "",
+  "buildCommand": "node build.js",
   "installCommand": "",
   "outputDirectory": ".",
-  "cleanUrls": false
+  "cleanUrls": false,
+  "redirects": [
+    {
+      "source": "/teams/",
+      "destination": "/our-team/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy/",
+      "destination": "/handshake-legal/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/terms/",
+      "destination": "/handshake-legal/terms-of-use/",
+      "permanent": true
+    },
+    {
+      "source": "/testimonial/",
+      "destination": "/testimonials/",
+      "permanent": true
+    },
+    {
+      "source": "/testimonial/high-growth-tech-company/",
+      "destination": "/testimonials/",
+      "permanent": true
+    },
+    {
+      "source": "/testimonial/owner-of-software-company-in-25m-sale/",
+      "destination": "/testimonials/",
+      "permanent": true
+    },
+    {
+      "source": "/testimonial/serial-entrepreneur/",
+      "destination": "/testimonials/",
+      "permanent": true
+    },
+    {
+      "source": "/testimonial/serial-entrepreneur-2/",
+      "destination": "/testimonials/",
+      "permanent": true
+    },
+    {
+      "source": "/testimonial/series-a-tech-company/",
+      "destination": "/testimonials/",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/about-us.html",
+      "destination": "/about-us/",
+      "permanent": true
+    },
+    {
+      "source": "/our-team.html",
+      "destination": "/our-team/",
+      "permanent": true
+    },
+    {
+      "source": "/justin-earley.html",
+      "destination": "/our-team/justin/",
+      "permanent": true
+    },
+    {
+      "source": "/team-andrew-hemby.html",
+      "destination": "/teams/andrew/",
+      "permanent": true
+    },
+    {
+      "source": "/team-chris-rohde.html",
+      "destination": "/teams/chris/",
+      "permanent": true
+    },
+    {
+      "source": "/team-blair-brake.html",
+      "destination": "/teams/blair/",
+      "permanent": true
+    },
+    {
+      "source": "/business-formation.html",
+      "destination": "/virginia-business-formation-lawyer/",
+      "permanent": true
+    },
+    {
+      "source": "/llc-formation.html",
+      "destination": "/virginia-business-formation-lawyer/limited-liability-company/",
+      "permanent": true
+    },
+    {
+      "source": "/registering-an-llc.html",
+      "destination": "/virginia-business-formation-lawyer/limited-liability-company-formation/process-of-registering/",
+      "permanent": true
+    },
+    {
+      "source": "/operating-agreement-benefits.html",
+      "destination": "/virginia-business-formation-lawyer/operating-agreement/benefits/",
+      "permanent": true
+    },
+    {
+      "source": "/creating-an-operating-agreement.html",
+      "destination": "/virginia-business-formation-lawyer/operating-agreement/creating/",
+      "permanent": true
+    },
+    {
+      "source": "/partnership-agreement.html",
+      "destination": "/virginia-business-formation-lawyer/partnership-agreement/",
+      "permanent": true
+    },
+    {
+      "source": "/creating-a-partnership-agreement.html",
+      "destination": "/virginia-business-formation-lawyer/partnership-agreement/creating/",
+      "permanent": true
+    },
+    {
+      "source": "/richmond-business-formation.html",
+      "destination": "/richmond-business/formation-lawyer/",
+      "permanent": true
+    },
+    {
+      "source": "/mergers-acquisitions.html",
+      "destination": "/virginia-business-merger-and-acquisitions-lawyer/",
+      "permanent": true
+    },
+    {
+      "source": "/small-pe-funds.html",
+      "destination": "/virginia-business-merger-and-acquisitions-lawyer/small-pe-funds-and-deal-counsel/",
+      "permanent": true
+    },
+    {
+      "source": "/sell-your-growth-business.html",
+      "destination": "/virginia-business-merger-and-acquisitions-lawyer/sell-your-growth-business-legal-guide-for-founders/",
+      "permanent": true
+    },
+    {
+      "source": "/legacy-owner-business-sale.html",
+      "destination": "/virginia-business-merger-and-acquisitions-lawyer/business-sale-legacy-owner-legal-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/eta-buying-your-first-business.html",
+      "destination": "/virginia-business-merger-and-acquisitions-lawyer/eta-buying-your-first-business/",
+      "permanent": true
+    },
+    {
+      "source": "/strategic-acquisition-guide.html",
+      "destination": "/virginia-business-merger-and-acquisitions-lawyer/strategic-acquisition-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/commercial-contracts.html",
+      "destination": "/virginia-commercial-contracts-lawyer/",
+      "permanent": true
+    },
+    {
+      "source": "/handshake-legal.html",
+      "destination": "/handshake-legal/",
+      "permanent": true
+    },
+    {
+      "source": "/handshake-beneficial-ownership-information.html",
+      "destination": "/handshake-legal/beneficial-ownership-information/",
+      "permanent": true
+    },
+    {
+      "source": "/handshake-confidentiality-agreement-assignment-of-ip.html",
+      "destination": "/handshake-legal/confidentiality-agreement-assignment-of-ip/",
+      "permanent": true
+    },
+    {
+      "source": "/handshake-convertible-note.html",
+      "destination": "/handshake-legal/convertible-note/",
+      "permanent": true
+    },
+    {
+      "source": "/handshake-copyright-filing.html",
+      "destination": "/handshake-legal/copyright-filing/",
+      "permanent": true
+    },
+    {
+      "source": "/handshake-form-1099-independent-contractor-agreement.html",
+      "destination": "/handshake-legal/form-1099-independent-contractor-agreement/",
+      "permanent": true
+    },
+    {
+      "source": "/handshake-form-nda.html",
+      "destination": "/handshake-legal/form-nda/",
+      "permanent": true
+    },
+    {
+      "source": "/handshake-form-waiver.html",
+      "destination": "/handshake-legal/form-waiver/",
+      "permanent": true
+    },
+    {
+      "source": "/handshake-letter-of-intent.html",
+      "destination": "/handshake-legal/letter-of-intent/",
+      "permanent": true
+    },
+    {
+      "source": "/handshake-llc-organization.html",
+      "destination": "/handshake-legal/llc-organization/",
+      "permanent": true
+    },
+    {
+      "source": "/handshake-master-services-agreement-sow.html",
+      "destination": "/handshake-legal/master-services-agreement-sow/",
+      "permanent": true
+    },
+    {
+      "source": "/handshake-offer-letter.html",
+      "destination": "/handshake-legal/offer-letter/",
+      "permanent": true
+    },
+    {
+      "source": "/handshake-operating-partnership-agreement.html",
+      "destination": "/handshake-legal/operating-partnership-agreement/",
+      "permanent": true
+    },
+    {
+      "source": "/handshake-privacy-policy.html",
+      "destination": "/handshake-legal/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/handshake-safe-agreement.html",
+      "destination": "/handshake-legal/safe-agreement/",
+      "permanent": true
+    },
+    {
+      "source": "/handshake-terms-of-use.html",
+      "destination": "/handshake-legal/terms-of-use/",
+      "permanent": true
+    },
+    {
+      "source": "/handshake-trademark-filing.html",
+      "destination": "/handshake-legal/trademark-filing/",
+      "permanent": true
+    },
+    {
+      "source": "/engagement-letter.html",
+      "destination": "/engagement-letter/",
+      "permanent": true
+    },
+    {
+      "source": "/testimonials.html",
+      "destination": "/testimonials/",
+      "permanent": true
+    },
+    {
+      "source": "/testimonial-archive.html",
+      "destination": "/testimonials/",
+      "permanent": true
+    },
+    {
+      "source": "/testimonial-high-growth-tech-company.html",
+      "destination": "/testimonials/",
+      "permanent": true
+    },
+    {
+      "source": "/testimonial-owner-of-software-company-in-25m-sale.html",
+      "destination": "/testimonials/",
+      "permanent": true
+    },
+    {
+      "source": "/testimonial-serial-entrepreneur.html",
+      "destination": "/testimonials/",
+      "permanent": true
+    },
+    {
+      "source": "/testimonial-serial-entrepreneur-2.html",
+      "destination": "/testimonials/",
+      "permanent": true
+    },
+    {
+      "source": "/testimonial-series-a-tech-company.html",
+      "destination": "/testimonials/",
+      "permanent": true
+    },
+    {
+      "source": "/offices.html",
+      "destination": "/nap/",
+      "permanent": true
+    },
+    {
+      "source": "/office-richmond.html",
+      "destination": "/nap/earley-business-legal/",
+      "permanent": true
+    },
+    {
+      "source": "/office-northern-va.html",
+      "destination": "/nap/northern-va/",
+      "permanent": true
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/static-page.html",
+      "destination": "/static-page/",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/about-us/",
+      "destination": "/about-us.html"
+    },
+    {
+      "source": "/our-team/",
+      "destination": "/our-team.html"
+    },
+    {
+      "source": "/our-team/justin/",
+      "destination": "/justin-earley.html"
+    },
+    {
+      "source": "/teams/andrew/",
+      "destination": "/team-andrew-hemby.html"
+    },
+    {
+      "source": "/teams/chris/",
+      "destination": "/team-chris-rohde.html"
+    },
+    {
+      "source": "/teams/blair/",
+      "destination": "/team-blair-brake.html"
+    },
+    {
+      "source": "/virginia-business-formation-lawyer/",
+      "destination": "/business-formation.html"
+    },
+    {
+      "source": "/virginia-business-formation-lawyer/limited-liability-company/",
+      "destination": "/llc-formation.html"
+    },
+    {
+      "source": "/virginia-business-formation-lawyer/limited-liability-company-formation/process-of-registering/",
+      "destination": "/registering-an-llc.html"
+    },
+    {
+      "source": "/virginia-business-formation-lawyer/operating-agreement/benefits/",
+      "destination": "/operating-agreement-benefits.html"
+    },
+    {
+      "source": "/virginia-business-formation-lawyer/operating-agreement/creating/",
+      "destination": "/creating-an-operating-agreement.html"
+    },
+    {
+      "source": "/virginia-business-formation-lawyer/partnership-agreement/",
+      "destination": "/partnership-agreement.html"
+    },
+    {
+      "source": "/virginia-business-formation-lawyer/partnership-agreement/creating/",
+      "destination": "/creating-a-partnership-agreement.html"
+    },
+    {
+      "source": "/richmond-business/formation-lawyer/",
+      "destination": "/richmond-business-formation.html"
+    },
+    {
+      "source": "/virginia-business-merger-and-acquisitions-lawyer/",
+      "destination": "/mergers-acquisitions.html"
+    },
+    {
+      "source": "/virginia-business-merger-and-acquisitions-lawyer/small-pe-funds-and-deal-counsel/",
+      "destination": "/small-pe-funds.html"
+    },
+    {
+      "source": "/virginia-business-merger-and-acquisitions-lawyer/sell-your-growth-business-legal-guide-for-founders/",
+      "destination": "/sell-your-growth-business.html"
+    },
+    {
+      "source": "/virginia-business-merger-and-acquisitions-lawyer/business-sale-legacy-owner-legal-guide/",
+      "destination": "/legacy-owner-business-sale.html"
+    },
+    {
+      "source": "/virginia-business-merger-and-acquisitions-lawyer/eta-buying-your-first-business/",
+      "destination": "/eta-buying-your-first-business.html"
+    },
+    {
+      "source": "/virginia-business-merger-and-acquisitions-lawyer/strategic-acquisition-guide/",
+      "destination": "/strategic-acquisition-guide.html"
+    },
+    {
+      "source": "/virginia-commercial-contracts-lawyer/",
+      "destination": "/commercial-contracts.html"
+    },
+    {
+      "source": "/handshake-legal/",
+      "destination": "/handshake-legal.html"
+    },
+    {
+      "source": "/handshake-legal/beneficial-ownership-information/",
+      "destination": "/handshake-beneficial-ownership-information.html"
+    },
+    {
+      "source": "/handshake-legal/confidentiality-agreement-assignment-of-ip/",
+      "destination": "/handshake-confidentiality-agreement-assignment-of-ip.html"
+    },
+    {
+      "source": "/handshake-legal/convertible-note/",
+      "destination": "/handshake-convertible-note.html"
+    },
+    {
+      "source": "/handshake-legal/copyright-filing/",
+      "destination": "/handshake-copyright-filing.html"
+    },
+    {
+      "source": "/handshake-legal/form-1099-independent-contractor-agreement/",
+      "destination": "/handshake-form-1099-independent-contractor-agreement.html"
+    },
+    {
+      "source": "/handshake-legal/form-nda/",
+      "destination": "/handshake-form-nda.html"
+    },
+    {
+      "source": "/handshake-legal/form-waiver/",
+      "destination": "/handshake-form-waiver.html"
+    },
+    {
+      "source": "/handshake-legal/letter-of-intent/",
+      "destination": "/handshake-letter-of-intent.html"
+    },
+    {
+      "source": "/handshake-legal/llc-organization/",
+      "destination": "/handshake-llc-organization.html"
+    },
+    {
+      "source": "/handshake-legal/master-services-agreement-sow/",
+      "destination": "/handshake-master-services-agreement-sow.html"
+    },
+    {
+      "source": "/handshake-legal/offer-letter/",
+      "destination": "/handshake-offer-letter.html"
+    },
+    {
+      "source": "/handshake-legal/operating-partnership-agreement/",
+      "destination": "/handshake-operating-partnership-agreement.html"
+    },
+    {
+      "source": "/handshake-legal/privacy-policy/",
+      "destination": "/handshake-privacy-policy.html"
+    },
+    {
+      "source": "/handshake-legal/safe-agreement/",
+      "destination": "/handshake-safe-agreement.html"
+    },
+    {
+      "source": "/handshake-legal/terms-of-use/",
+      "destination": "/handshake-terms-of-use.html"
+    },
+    {
+      "source": "/handshake-legal/trademark-filing/",
+      "destination": "/handshake-trademark-filing.html"
+    },
+    {
+      "source": "/engagement-letter/",
+      "destination": "/engagement-letter.html"
+    },
+    {
+      "source": "/testimonials/",
+      "destination": "/testimonials.html"
+    },
+    {
+      "source": "/testimonial/",
+      "destination": "/testimonial-archive.html"
+    },
+    {
+      "source": "/testimonial/high-growth-tech-company/",
+      "destination": "/testimonial-high-growth-tech-company.html"
+    },
+    {
+      "source": "/testimonial/owner-of-software-company-in-25m-sale/",
+      "destination": "/testimonial-owner-of-software-company-in-25m-sale.html"
+    },
+    {
+      "source": "/testimonial/serial-entrepreneur/",
+      "destination": "/testimonial-serial-entrepreneur.html"
+    },
+    {
+      "source": "/testimonial/serial-entrepreneur-2/",
+      "destination": "/testimonial-serial-entrepreneur-2.html"
+    },
+    {
+      "source": "/testimonial/series-a-tech-company/",
+      "destination": "/testimonial-series-a-tech-company.html"
+    },
+    {
+      "source": "/nap/",
+      "destination": "/offices.html"
+    },
+    {
+      "source": "/nap/earley-business-legal/",
+      "destination": "/office-richmond.html"
+    },
+    {
+      "source": "/nap/northern-va/",
+      "destination": "/office-northern-va.html"
+    },
+    {
+      "source": "/contact/",
+      "destination": "/contact.html"
+    },
+    {
+      "source": "/static-page/",
+      "destination": "/static-page.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    }
+  ]
 }

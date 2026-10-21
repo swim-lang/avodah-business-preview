@@ -17,12 +17,22 @@
 
   /* ---------- current page in nav ---------- */
 
-  var pageName = location.pathname.split("/").pop() || "index.html";
+  var normalizePath = function (value) {
+    try {
+      var pathname = new URL(value, location.origin).pathname;
+      return pathname === "/" ? "/" : pathname.replace(/\/?$/, "/");
+    } catch (e) {
+      return value;
+    }
+  };
   // guide pages light up their parent practice (<main data-nav="...">)
   var navMain = document.querySelector("main[data-nav]");
-  var navKey = navMain ? navMain.getAttribute("data-nav") : pageName;
+  var navKey = navMain ? navMain.getAttribute("data-nav") : location.pathname;
   document.querySelectorAll(".primary-nav a").forEach(function (a) {
-    if (a.getAttribute("href") === navKey) a.classList.add("is-current");
+    if (normalizePath(a.href) === normalizePath(navKey)) {
+      a.classList.add("is-current");
+      a.setAttribute("aria-current", "page");
+    }
   });
 
   /* ---------- reveals ---------- */
@@ -111,7 +121,7 @@
     var top = document.createElement("div");
     top.className = "menu-overlay__top";
     top.innerHTML =
-      '<img src="assets/wordmark-ivory.svg" alt="Avodah" />' +
+      '<img src="/assets/wordmark-ivory.svg" alt="Avodah" width="3000" height="461" />' +
       '<button class="menu-overlay__close" aria-label="Close menu">✕</button>';
     overlay.appendChild(top);
 
@@ -125,7 +135,7 @@
       linksWrap.appendChild(link);
     });
     var contact = document.createElement("a");
-    contact.href = "contact.html";
+    contact.href = "/contact/";
     contact.textContent = "Book a Consultation";
     contact.style.transitionDelay = 0.06 + navLinks.length * 0.05 + "s";
     linksWrap.appendChild(contact);
@@ -169,15 +179,25 @@
     });
   }
 
-  /* ---------- desktop / mobile preview toggle (client review aid) ---------- */
+  /* ---------- analytics hooks ----------
+     These become active only after a GA4 measurement ID is supplied at build
+     time. A successful form-lead event should be emitted by the future live
+     form handler, not by this non-transmitting preview form. */
 
-  if (!document.documentElement.hasAttribute("data-viewer") && window.self === window.top) {
-    var toggle = document.createElement("div");
-    toggle.className = "device-toggle";
-    toggle.innerHTML =
-      '<span class="is-active">Desktop</span>' +
-      '<a href="viewer.html#' + pageName + '">Mobile</a>';
-    document.body.appendChild(toggle);
-  }
+  document.addEventListener("click", function (event) {
+    var link = event.target.closest("a[href]");
+    if (!link || typeof window.gtag !== "function") return;
+    var href = link.getAttribute("href") || "";
+    var eventName = "";
+    if (href.indexOf("tel:") === 0) eventName = "phone_click";
+    else if (href.indexOf("typeform.com") !== -1) eventName = "handshake_start";
+    else if (normalizePath(href) === "/contact/") eventName = "contact_cta_click";
+    if (eventName) {
+      window.gtag("event", eventName, {
+        link_url: link.href,
+        page_path: location.pathname,
+      });
+    }
+  });
 
 })();

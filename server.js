@@ -3,6 +3,7 @@
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
+const { ROUTES, REDIRECT_ROUTES } = require("./site-config");
 
 const ROOT = __dirname;
 const PORT = process.env.PORT || 4190;
@@ -18,12 +19,20 @@ const MIME = {
   ".woff": "font/woff",
   ".woff2": "font/woff2",
   ".ico": "image/x-icon",
+  ".xml": "application/xml; charset=utf-8",
+  ".txt": "text/plain; charset=utf-8",
 };
 
 http
   .createServer((req, res) => {
     let urlPath = decodeURIComponent(req.url.split("?")[0]);
-    if (urlPath === "/") urlPath = "/index.html";
+    if (REDIRECT_ROUTES[urlPath]) {
+      res.writeHead(308, { Location: REDIRECT_ROUTES[urlPath] }).end();
+      return;
+    }
+    const matchedRoute = Object.entries(ROUTES).find(([, route]) => route === urlPath);
+    if (matchedRoute) urlPath = `/${matchedRoute[0]}`;
+    else if (urlPath === "/") urlPath = "/index.html";
     const filePath = path.join(ROOT, path.normalize(urlPath));
     if (!filePath.startsWith(ROOT)) {
       res.writeHead(403).end("Forbidden");

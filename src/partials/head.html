@@ -3,15 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, nofollow" />
+  <meta name="robots" content="{{robots}}" />
   <title>{{title}}</title>
   <meta name="description" content="{{description}}" />
+  <link rel="canonical" href="{{canonical}}" />
+  <meta property="og:site_name" content="Avodah Business" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{{title}}" />
+  <meta property="og:description" content="{{description}}" />
+  <meta property="og:url" content="{{canonical}}" />
+  <meta property="og:image" content="{{ogImage}}" />
+  <meta property="og:image:width" content="2000" />
+  <meta property="og:image:height" content="1059" />
+  <meta property="og:image:alt" content="The Avodah Business legal team" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{title}}" />
+  <meta name="twitter:description" content="{{description}}" />
+  <meta name="twitter:image" content="{{ogImage}}" />
+  <meta name="theme-color" content="#38242e" />
+{{verification}}
+  <link rel="icon" href="/assets/crest-eggplant.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <!-- Jost stands in for Futura PT Book until the Adobe Fonts kit is added -->
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v={{v}}" />
-  <link rel="stylesheet" href="css/pages.css?v={{v}}" />
+  <link rel="stylesheet" href="/css/styles.css?v={{v}}" />
+  <link rel="stylesheet" href="/css/pages.css?v={{v}}" />
+  <script type="application/ld+json">{{schema}}</script>
+{{analytics}}
 </head>
 <body class="{{bodyClass}}">
 

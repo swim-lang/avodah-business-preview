@@ -22,7 +22,10 @@ Add `?flat=1` to any URL to skip the loader and scroll reveals (for full-page ca
 - `css/pages.css` — every page section, hero archetypes and closing bands
 - `js/site.js` — loader, staggered reveals, overlay menu, preview form, device toggle
 - `assets/photos/` — color photography from the 2024 shoot (originals are in the site's media library)
-- `CONTENT-INVENTORY.md` — full backup of the live site's copy, meta, forms and links
+- `site-config.js` — canonical host, legacy URL map, consolidation rules and crawl exclusions
+- `SEO-LAUNCH-CHECKLIST.md` — production gates, cutover sequence and measurement setup
+- `CONTENT-PARITY-NOTES.md` — record of what was preserved and what still needs client confirmation
+- `tests/seo.test.js` — route, metadata, image, schema, form-safety and crawl-control checks
 
 ## Motion (matches Traffic + Employment)
 
@@ -84,11 +87,29 @@ Verbatim live copy for the guides is in `content/`.
 Links outside the site (
 team profiles, Commercial Contracts) already point at their live URLs.
 
+## SEO build modes
+
+`npm run build` is preview-safe by default. It emits page-level `noindex`, a
+disallow-all `robots.txt`, and a Vercel `X-Robots-Tag` header while still using
+the production URLs as canonicals.
+
+Production indexing is opt-in and must only be enabled at approved cutover:
+
+```
+SEO_INDEX=true \
+SITE_URL=https://www.earleybusinesslegal.com \
+GA_MEASUREMENT_ID=G-XXXXXXXXXX \
+npm run build
+```
+
+Vercel runs `node build.js`, so `SEO_INDEX` and analytics should be scoped to
+the Production environment. Preview deployments remain blocked.
+
 ## Still to wire / confirm
 
 - Contact form: field names mirror Contact Form 7 #282; swap the static form for the CF7 shortcode on WordPress.
 - Privacy, Disclaimer, Terms links are placeholders (`#privacy`, `#terms`) — the pages don't exist yet.
-- Avodah Traffic / Employment links on About Us are placeholders until their domains are confirmed.
+- Avodah Traffic / Employment links on About Us point to their confirmed domain destinations; verify both after DNS launch.
 - Avodah Legal main-site link uses `https://www.avodahlegal.com` (same as Traffic) — confirm.
 - Operating Agreement price shows $3,500 (About Us on the live site says $2,500).
-- `noindex, nofollow` is set for review; remove at launch.
+- Indexing remains deliberately gated through `SEO_INDEX=true`; do not enable it before the domain, forms, legal pages, analytics, attorney review and launch approval are complete.
