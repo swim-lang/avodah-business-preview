@@ -23,7 +23,7 @@ The current live redirects are also preserved:
 
 Individual testimonial URLs consolidate to `/testimonials/` to avoid indexing several very thin pages containing the same quotes already shown on the main testimonials page.
 
-## Intentionally unresolved before launch approval
+## Intentionally retired at launch
 
 The current WordPress sitemap exposes seven placeholder/archive URLs that are not part of the substantive site:
 
@@ -35,10 +35,7 @@ The current WordPress sitemap exposes seven placeholder/archive URLs that are no
 - `/author/earleybusinstg/`
 - `/static-page/`
 
-The repository contains designed but parked templates for the blog and three Lorem Ipsum posts. They have not been published in the rebuild and are excluded from the production sitemap. Avodah should choose one of these launch treatments:
-
-1. Recommended: return 404/410 for the placeholder posts, category, author archive, and static template; redirect only `/blog/` after a real Insights destination exists.
-2. Preserve them temporarily as `noindex` pages while proper articles are prepared.
+Avodah confirmed that these placeholder pages may be retired. Their source templates remain parked for internal reference, but they are excluded from the deployment artifact and sitemap. The listed public routes intentionally return 404. `/blog/` should only be introduced later if Avodah approves a real editorial program and substantive articles.
 
 Do not redirect all placeholder URLs to the homepage. That produces irrelevant soft redirects and makes the migration harder to audit.
 

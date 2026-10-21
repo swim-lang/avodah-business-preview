@@ -1,14 +1,14 @@
 # Avodah Business — earleybusinesslegal.com refresh
 
-Static design build of the seven approved pages plus the formation guides, M&A guides, Handshake Portal and every other page on the live sitemap (52 pages; the 6 blog pages are designed but parked), built on the same system as
+Static design build of the seven approved pages plus the formation guides, M&A guides, Handshake Portal and every substantive page on the live sitemap (51 public pages; placeholder pages are retired), built on the same system as
 `../avodah-traffic-site` and `../avodah-employment-site` (shared tokens, Serrif +
 Jost, knot rule, crest, giant AVODAH footer, loader, reveal-on-scroll, overlay menu).
 
 ## Run it
 
 ```
-node build.js        # assemble src/ into the root .html files
-node server.js       # http://localhost:4190  (PORT env var to change)
+npm run build        # render pages and prepare the deployment-safe dist/ directory
+npm start            # http://localhost:4190  (PORT env var to change)
 ```
 
 `viewer.html#page.html` shows any page in a 375px phone frame.
@@ -26,6 +26,7 @@ Add `?flat=1` to any URL to skip the loader and scroll reveals (for full-page ca
 - `SEO-LAUNCH-CHECKLIST.md` — production gates, cutover sequence and measurement setup
 - `CONTENT-PARITY-NOTES.md` — record of what was preserved and what still needs client confirmation
 - `tests/seo.test.js` — route, metadata, image, schema, form-safety and crawl-control checks
+- `dist/` — generated hosting output containing only approved public pages and assets
 
 ## Motion (matches Traffic + Employment)
 
@@ -69,8 +70,8 @@ Add `?flat=1` to any URL to skip the loader and scroll reveals (for full-page ca
 | team-andrew-hemby.html, team-chris-rohde.html, team-blair-brake.html | /teams/andrew/, /teams/chris/, /teams/blair/ (/teams/ 301 → /our-team/) |
 | engagement-letter.html | /engagement-letter/ |
 | offices.html, office-richmond.html, office-northern-va.html | /nap/, /nap/earley-business-legal/, /nap/northern-va/ |
-| (parked) blog, post, author + category archives | `src/unpublished/` — move into `src/pages/` once real posts exist. Designs are in Paper (More Pages). |
-| static-page.html | /static-page/ (template for a real Privacy Policy / Terms page) |
+| (retired) blog, Lorem posts, author + category archives | Source remains parked in `src/unpublished/`; these routes intentionally return 404 until real editorial content is approved. |
+| (internal) static-page.html | Source-only reference template; not included in `dist/` and `/static-page/` intentionally returns 404. |
 | small-pe-funds.html | /virginia-business-merger-and-acquisitions-lawyer/small-pe-funds-and-deal-counsel/ |
 | sell-your-growth-business.html | /virginia-business-merger-and-acquisitions-lawyer/sell-your-growth-business-legal-guide-for-founders/ |
 | legacy-owner-business-sale.html | /virginia-business-merger-and-acquisitions-lawyer/business-sale-legacy-owner-legal-guide/ |
@@ -102,14 +103,14 @@ GA_MEASUREMENT_ID=G-XXXXXXXXXX \
 npm run build
 ```
 
-Vercel runs `node build.js`, so `SEO_INDEX` and analytics should be scoped to
+Vercel runs `npm run build` and serves only `dist/`, so `SEO_INDEX` and analytics should be scoped to
 the Production environment. Preview deployments remain blocked.
 
 ## Still to wire / confirm
 
 - Contact form: field names mirror Contact Form 7 #282; swap the static form for the CF7 shortcode on WordPress.
-- Privacy, Disclaimer, Terms links are placeholders (`#privacy`, `#terms`) — the pages don't exist yet.
+- Sitewide Privacy and Terms links are intentionally omitted. The fixed-fee Handshake Privacy Policy and Terms and Conditions legal products remain available in the Handshake Portal.
 - Avodah Traffic / Employment links on About Us point to their confirmed domain destinations; verify both after DNS launch.
 - Avodah Legal main-site link uses `https://www.avodahlegal.com` (same as Traffic) — confirm.
-- Operating Agreement price shows $3,500 (About Us on the live site says $2,500).
-- Indexing remains deliberately gated through `SEO_INDEX=true`; do not enable it before the domain, forms, legal pages, analytics, attorney review and launch approval are complete.
+- The Operating / Partnership Agreement price is confirmed at $3,500.
+- Indexing remains deliberately gated through `SEO_INDEX=true`; do not enable it before the domain, forms, analytics, attorney review and launch approval are complete.

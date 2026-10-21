@@ -10,7 +10,9 @@ This rebuild is a brand and technical refresh of Earley Business Legal. The exis
 - Known WordPress page paths and information architecture.
 - Phone number and the currently represented Richmond and Leesburg offices.
 - Existing page titles, descriptions, headings, body copy, testimonials, service boundaries, guide content, and fixed-fee product descriptions already present in the rebuild.
-- Six parked blog templates remain unpublished and outside the sitemap.
+- Parked blog and Lorem templates remain unpublished, outside the sitemap, and outside the deployment artifact.
+- The Operating / Partnership Agreement price is confirmed at $3,500.
+- Sitewide Privacy and Terms links are intentionally omitted. The Handshake Privacy Policy and Terms and Conditions offerings remain available as fixed-fee legal products.
 
 ## Small non-substantive changes made
 
@@ -29,8 +31,6 @@ This rebuild is a brand and technical refresh of Earley Business Legal. The exis
 
 - Final domain and canonical host.
 - A crawl/export of the current WordPress site to catch any legacy URLs not listed in the repository README.
-- Whether the Operating / Partnership Agreement price should be $3,500 or $2,500.
-- Whether the current live `/privacy-policy/` and `/terms/` redirects to Handshake product pages are legally suitable as sitewide notices.
 - Current office, phone, roster, and credentials accuracy.
 - Contact-form routing and retention.
 - Attorney review and publication approval.

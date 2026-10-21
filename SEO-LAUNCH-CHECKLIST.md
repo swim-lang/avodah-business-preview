@@ -11,6 +11,9 @@
 - The normal site no longer shows the desktop/mobile review switch. `viewer.html` remains a private QA aid only.
 - The current Vercel preview is blocked by page-level `noindex`, an `X-Robots-Tag` header, and a disallow-all `robots.txt`.
 - The existing page copy was not substantively rewritten during this pass.
+- Placeholder blog, Lorem, author, category, and static-template routes are retired and excluded from deployment.
+- The Operating / Partnership Agreement price is confirmed at $3,500.
+- Sitewide Privacy and Terms links are intentionally omitted; the two Handshake legal products remain available as products.
 
 ## Required before domain cutover
 
@@ -24,9 +27,8 @@
    - `GA_MEASUREMENT_ID=G-XXXXXXXXXX`
    - `GOOGLE_SITE_VERIFICATION=...` only if HTML-tag verification is used; DNS verification is preferred for a Domain property.
 6. Replace the non-transmitting preview form with the approved secure form endpoint. Confirm recipients, reply handling, spam protection, retention, consent language, and a tested success state. Emit a GA4 lead event only after the backend confirms a successful submission.
-7. Confirm that the existing `/privacy-policy/` and `/terms/` redirects may continue pointing to the two Handshake pages. Those are the current live-site destinations, but Avodah should confirm they are suitable as sitewide legal notices.
-8. Confirm the Richmond and Leesburg office presentation, phone routing, staff roster, Handshake prices, and all attorney credentials.
-9. Run attorney review and receive written publication approval.
+7. Confirm the Richmond and Leesburg office presentation, phone routing, staff roster, remaining Handshake prices, and all attorney credentials.
+8. Run attorney review and receive written publication approval.
 
 ## Cutover sequence
 
@@ -67,4 +69,4 @@ npm run build
 npm test
 ```
 
-Do not commit or deploy a production-indexing build before the domain, analytics, form, legal pages, attorney review, and launch approval are complete.
+Do not commit or deploy a production-indexing build before the domain, analytics, form, attorney review, and launch approval are complete.

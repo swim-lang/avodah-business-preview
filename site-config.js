@@ -61,11 +61,12 @@ const ROUTES = {
   "office-richmond.html": "/nap/earley-business-legal/",
   "office-northern-va.html": "/nap/northern-va/",
   "contact.html": "/contact/",
-  "static-page.html": "/static-page/",
 };
 
+// Source templates kept for reference but intentionally excluded from public builds.
+const INTERNAL_FILES = new Set(["static-page.html"]);
+
 const NOINDEX_FILES = new Set([
-  "static-page.html",
   "testimonial-archive.html",
   "testimonial-high-growth-tech-company.html",
   "testimonial-owner-of-software-company-in-25m-sale.html",
@@ -103,5 +104,6 @@ module.exports = {
   NOINDEX_FILES,
   CANONICAL_OVERRIDES,
   REDIRECT_ROUTES,
+  INTERNAL_FILES,
   routeForFile,
 };

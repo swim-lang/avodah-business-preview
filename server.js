@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const { ROUTES, REDIRECT_ROUTES } = require("./site-config");
 
-const ROOT = __dirname;
+const ROOT = fs.existsSync(path.join(__dirname, "dist")) ? path.join(__dirname, "dist") : __dirname;
 const PORT = process.env.PORT || 4190;
 
 const MIME = {

@@ -9,6 +9,7 @@ const {
   ROUTES,
   NOINDEX_FILES,
   CANONICAL_OVERRIDES,
+  INTERNAL_FILES,
 } = require("../site-config");
 
 const ROOT = path.resolve(__dirname, "..");
@@ -21,6 +22,7 @@ const tagValue = (html, pattern) => {
 test("every source page has an explicit preserved route", () => {
   const pages = fs.readdirSync(path.join(ROOT, "src/pages"))
     .filter((file) => file.endsWith(".html"))
+    .filter((file) => !INTERNAL_FILES.has(file))
     .sort();
   assert.deepEqual(Object.keys(ROUTES).sort(), pages);
   assert.equal(new Set(Object.values(ROUTES)).size, pages.length);
@@ -86,7 +88,7 @@ test("preview crawl controls and Vercel routes agree", () => {
 });
 
 test("production build configuration keeps duplicate pages out of the index", () => {
-  assert.ok(NOINDEX_FILES.has("static-page.html"));
+  assert.ok(INTERNAL_FILES.has("static-page.html"));
   for (const file of Object.keys(CANONICAL_OVERRIDES)) {
     assert.ok(NOINDEX_FILES.has(file));
     assert.equal(CANONICAL_OVERRIDES[file], "/testimonials/");
@@ -97,4 +99,20 @@ test("preview form remains non-transmitting", () => {
   const contact = read("contact.html");
   assert.match(contact, /<form[^>]+action="#"[^>]+data-preview-form/);
   assert.match(read("js/site.js"), /e\.preventDefault\(\)/);
+});
+
+test("public build excludes source, tests, QA tools, and retired placeholders", () => {
+  assert.ok(fs.existsSync(path.join(ROOT, "dist", "index.html")));
+  assert.ok(fs.existsSync(path.join(ROOT, "dist", "handshake-privacy-policy.html")));
+  assert.ok(fs.existsSync(path.join(ROOT, "dist", "handshake-terms-of-use.html")));
+  for (const excluded of ["src", "tests", "site-config.js", "viewer.html", "static-page.html"]) {
+    assert.equal(fs.existsSync(path.join(ROOT, "dist", excluded)), false, `${excluded} leaked into dist`);
+  }
+});
+
+test("sitewide privacy and terms links are omitted while legal products remain", () => {
+  assert.doesNotMatch(read("index.html"), /href="\/(?:privacy-policy|terms)\/"/);
+  assert.doesNotMatch(read("contact.html"), /href="\/(?:privacy-policy|terms)\/"/);
+  assert.ok(ROUTES["handshake-privacy-policy.html"]);
+  assert.ok(ROUTES["handshake-terms-of-use.html"]);
 });

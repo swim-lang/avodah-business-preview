@@ -1,9 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
-  "buildCommand": "node build.js",
+  "buildCommand": "npm run build",
   "installCommand": "",
-  "outputDirectory": ".",
+  "outputDirectory": "dist",
   "cleanUrls": false,
   "redirects": [
     {
@@ -305,11 +305,6 @@
       "source": "/contact.html",
       "destination": "/contact/",
       "permanent": true
-    },
-    {
-      "source": "/static-page.html",
-      "destination": "/static-page/",
-      "permanent": true
     }
   ],
   "rewrites": [
@@ -516,10 +511,6 @@
     {
       "source": "/contact/",
       "destination": "/contact.html"
-    },
-    {
-      "source": "/static-page/",
-      "destination": "/static-page.html"
     }
   ],
   "headers": [

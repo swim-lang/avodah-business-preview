@@ -1,6 +1,6 @@
 /* Avodah Business — tiny static build.
-   Assembles src/partials + src/pages/*.html into flat, ready-to-serve
-   pages at the project root (same output shape as Traffic + Employment).
+   Assembles src/partials + src/pages/*.html into flat rendered pages, then
+   prepare-dist.js copies only approved public output into dist/ for hosting.
 
    Each page starts with a meta comment:
      <!--meta {"title": "...", "description": "...", "loader": true} -->
@@ -425,9 +425,9 @@ const headers = [
 fs.writeFileSync(path.join(ROOT, "vercel.json"), `${JSON.stringify({
   $schema: "https://openapi.vercel.sh/vercel.json",
   framework: null,
-  buildCommand: "node build.js",
+  buildCommand: "npm run build",
   installCommand: "",
-  outputDirectory: ".",
+  outputDirectory: "dist",
   cleanUrls: false,
   redirects: [...routeRedirects, ...htmlRedirects],
   rewrites,
