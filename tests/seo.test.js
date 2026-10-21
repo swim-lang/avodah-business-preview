@@ -116,3 +116,7 @@ test("sitewide privacy and terms links are omitted while legal products remain",
   assert.ok(ROUTES["handshake-privacy-policy.html"]);
   assert.ok(ROUTES["handshake-terms-of-use.html"]);
 });
+
+test("responsive images preserve their aspect ratio", () => {
+  assert.match(read("css/styles.css"), /img\s*\{[^}]*height:\s*auto;/);
+});
