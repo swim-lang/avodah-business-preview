@@ -4,7 +4,9 @@ Prepared October 27, 2026. This document does not establish that delivery or pho
 
 ## Current verification status
 
-October 27: the existing Anchovies Vercel project was confirmed through the authenticated CLI. It has no environment variables configured. The new endpoint therefore remains disabled. The existing Avodah CallRail login was located in 1Password, but the signed-out service session still needs authentication. No Resend credential was found by item title in the available vaults. Existing agency workspace access and a dedicated Business tracking number are not yet verified. No new account, paid number, DNS change, or test email was created.
+October 27: access to the existing Anchovies Vercel project, existing Anchovies Pro Resend workspace, and Avodah CallRail account was confirmed. Vercel has no environment variables configured, so the deployed endpoint remains disabled. Resend has verified Employment and Traffic sending domains, but no Business sending domain or Business-specific key. CallRail lists Employment, Traffic, and Avodah Legal companies, with no separate Business company. The main company's existing website pool, Google Ads, and Google Business Profile trackers must not be repurposed without approval. Confirm the Business sending domain and call destination before activation. No new account, paid number, DNS change, or test email was created.
+
+The updated preview deployed successfully from commit `7f5304a`. Its endpoint reports disabled, its page metadata retains `noindex, nofollow`, and source files are not exposed as static assets. All 68 automated tests and all 51 local page routes passed, including intended redirects. Desktop, 390px mobile, and 320px narrow-header checks found no horizontal overflow.
 
 ## Inquiry endpoint
 
