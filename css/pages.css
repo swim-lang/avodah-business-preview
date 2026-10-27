@@ -651,7 +651,7 @@ a.family-card:hover { border-color: var(--aubergine); }
 .form__status:empty { display: none; }
 
 @media (max-width: 900px) {
-  .utility-line span { display: none; }
+  .utility-line__contact > span { display: none; }
   /* practice list collapses to titles + link on phones (copy stays in the HTML for search) */
   .practice-row__body p { display: none; }
   .practice-row__body { padding-top: 6px; }

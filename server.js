@@ -26,6 +26,13 @@ const MIME = {
 http
   .createServer((req, res) => {
     let urlPath = decodeURIComponent(req.url.split("?")[0]);
+    if (urlPath === "/api/intake") {
+      require("./api/intake")(req, res).catch(() => {
+        if (!res.headersSent) res.writeHead(500, {"Content-Type":"application/json"});
+        res.end(JSON.stringify({ok:false, message:"Inquiry unavailable."}));
+      });
+      return;
+    }
     if (REDIRECT_ROUTES[urlPath]) {
       res.writeHead(308, { Location: REDIRECT_ROUTES[urlPath] }).end();
       return;

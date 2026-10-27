@@ -11,7 +11,10 @@ fs.rmSync(DIST, { recursive: true, force: true });
 fs.mkdirSync(DIST, { recursive: true });
 
 for (const directory of ["assets", "css", "js"]) {
-  fs.cpSync(path.join(ROOT, directory), path.join(DIST, directory), { recursive: true });
+  fs.cpSync(path.join(ROOT, directory), path.join(DIST, directory), {
+    recursive: true,
+    filter: source => !/^color-(?:justin-conference|justin-kitchen|office|team-kitchen|team-table|team-wide)\.jpg$/.test(path.basename(source)),
+  });
 }
 
 for (const file of [...Object.keys(ROUTES), "robots.txt", "sitemap.xml"]) {

@@ -19,7 +19,7 @@ const {
 
 const ROOT = __dirname;
 const SRC = path.join(ROOT, "src");
-const VERSION = "20261021b"; // cache-buster for css/js
+const VERSION = "20261027a"; // cache-buster for css/js
 const INDEX_SITE = process.env.SEO_INDEX === "true";
 const SITE_URL = (process.env.SITE_URL || SITE.productionUrl).replace(/\/$/, "");
 const GOOGLE_SITE_VERIFICATION = process.env.GOOGLE_SITE_VERIFICATION || "";
@@ -34,6 +34,7 @@ const partial = (name) => fs.readFileSync(path.join(SRC, "partials", name + ".ht
 const escapeAttr = (s) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
 
 const PHOTO_DIMENSIONS = {
+  "avodah-richmond-cityscape.jpg": [2048, 1536],
   "color-andrew.jpg": [750, 1000],
   "color-blair.jpg": [933, 1400],
   "color-chris.jpg": [933, 1400],
@@ -428,6 +429,7 @@ fs.writeFileSync(path.join(ROOT, "vercel.json"), `${JSON.stringify({
   buildCommand: "npm run build",
   installCommand: "",
   outputDirectory: "dist",
+  functions: { "api/intake.js": { maxDuration: 30 } },
   cleanUrls: false,
   redirects: [...routeRedirects, ...htmlRedirects],
   rewrites,

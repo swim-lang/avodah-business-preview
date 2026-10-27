@@ -20,8 +20,9 @@ Add `?flat=1` to any URL to skip the loader and scroll reveals (for full-page ca
 - `src/pages/` — one body file per page, with a `<!--meta {...} -->` header
 - `css/styles.css` — shared chrome (from Traffic, Cypress loader, Signal "Business" label)
 - `css/pages.css` — every page section, hero archetypes and closing bands
-- `js/site.js` — loader, staggered reveals, overlay menu, preview form, device toggle
-- `assets/photos/` — color photography from the 2024 shoot (originals are in the site's media library)
+- `js/site.js` — loader, staggered reveals, overlay menu, server-gated inquiry form
+- `api/intake.js` — Business inquiry endpoint, disabled until approved Resend configuration is present
+- `assets/photos/` — retained headshots and approved main-site Richmond cityscape; provenance in `PHOTO-SOURCES.md`
 - `site-config.js` — canonical host, legacy URL map, consolidation rules and crawl exclusions
 - `SEO-LAUNCH-CHECKLIST.md` — production gates, cutover sequence and measurement setup
 - `CONTENT-PARITY-NOTES.md` — record of what was preserved and what still needs client confirmation
@@ -108,9 +109,9 @@ the Production environment. Preview deployments remain blocked.
 
 ## Still to wire / confirm
 
-- Contact form: field names mirror Contact Form 7 #282; swap the static form for the CF7 shortcode on WordPress.
+- Contact form: Resend endpoint prepared for Vercel. See `FORM-SETUP.md` for activation and delivery verification. The form stays disabled unless the server confirms complete configuration.
 - Sitewide Privacy and Terms links are intentionally omitted. The fixed-fee Handshake Privacy Policy and Terms and Conditions legal products remain available in the Handshake Portal.
 - Avodah Traffic / Employment links on About Us point to their confirmed domain destinations; verify both after DNS launch.
-- Avodah Legal main-site link uses `https://www.avodahlegal.com` (same as Traffic) — confirm.
+- Avodah Legal main-site link is confirmed and prominently linked in the top utility bar, mobile menu and footer.
 - The Operating / Partnership Agreement price is confirmed at $3,500.
 - Indexing remains deliberately gated through `SEO_INDEX=true`; do not enable it before the domain, forms, analytics, attorney review and launch approval are complete.

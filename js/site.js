@@ -139,6 +139,11 @@
     contact.textContent = "Book a Consultation";
     contact.style.transitionDelay = 0.06 + navLinks.length * 0.05 + "s";
     linksWrap.appendChild(contact);
+    var mainSite = document.createElement("a");
+    mainSite.href = "https://www.avodahlegal.com/";
+    mainSite.textContent = "Avodah Legal Main Site ↗";
+    mainSite.className = "menu-overlay__main-site";
+    linksWrap.appendChild(mainSite);
     overlay.appendChild(linksWrap);
 
     var meta = document.createElement("div");
@@ -166,23 +171,46 @@
     });
   }
 
-  /* ---------- contact form (static preview: nothing is sent) ----------
-     On WordPress this form is replaced by Contact Form 7 #282 with the same
-     field names. Here we only validate and confirm, so reviewers can test it. */
-
-  var previewForm = document.querySelector("[data-preview-form]");
-  if (previewForm) {
-    previewForm.addEventListener("submit", function (e) {
+  /* ---------- inquiry form: server-controlled activation ---------- */
+  var intakeForm = document.querySelector("[data-intake-form]");
+  if (intakeForm) {
+    var status = intakeForm.querySelector(".form__status");
+    var submitButton = intakeForm.querySelector("button[type=submit]");
+    var enabled = false;
+    var sending = false;
+    status.textContent = "Checking inquiry availability…";
+    fetch("/api/intake", {headers:{Accept:"application/json"}, cache:"no-store"})
+      .then(function (response) { return response.ok ? response.json() : {enabled:false}; })
+      .then(function (data) {
+        enabled = data.enabled === true;
+        submitButton.disabled = !enabled;
+        status.textContent = enabled ? "" : "Online inquiries are not available yet. Please call Avodah directly.";
+      }).catch(function () { status.textContent = "Online inquiries are unavailable. Please call Avodah directly."; });
+    intakeForm.addEventListener("submit", async function (e) {
       e.preventDefault();
-      var status = previewForm.querySelector(".form__status");
-      if (status) status.textContent = "Thank you — this is the design preview, so nothing was sent. On the live site this goes to the Avodah Business team.";
+      if (!enabled || sending || !intakeForm.reportValidity()) return;
+      sending = true;
+      submitButton.disabled = true;
+      status.textContent = "Sending your inquiry…";
+      try {
+        var response = await fetch("/api/intake", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(Object.fromEntries(new FormData(intakeForm))), signal:AbortSignal.timeout(20000)});
+        var result = await response.json();
+        if (!response.ok || result.ok !== true) throw new Error(result.message || "Your inquiry could not be sent. Please call Avodah directly.");
+        status.textContent = "Thank you. Your inquiry has been sent to Avodah Business. This does not create an attorney-client relationship.";
+        intakeForm.reset();
+        if (typeof window.gtag === "function") window.gtag("event", "generate_lead", {form_name:"business_inquiry", page_path:location.pathname});
+      } catch (error) {
+        status.textContent = error.name === "TimeoutError" ? "We could not confirm delivery. Please call Avodah before trying again." : (error.message || "Your inquiry could not be sent. Please call Avodah directly.");
+      } finally {
+        sending = false;
+        submitButton.disabled = !enabled;
+      }
     });
   }
 
   /* ---------- analytics hooks ----------
      These become active only after a GA4 measurement ID is supplied at build
-     time. A successful form-lead event should be emitted by the future live
-     form handler, not by this non-transmitting preview form. */
+     time. The form emits generate_lead only after server-confirmed acceptance. */
 
   document.addEventListener("click", function (event) {
     var link = event.target.closest("a[href]");

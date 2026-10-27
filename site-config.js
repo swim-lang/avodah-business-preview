@@ -6,7 +6,7 @@ const SITE = {
   previewUrl: "https://avodah-business.vercel.app",
   phoneDisplay: "(804) 234-3183",
   phoneE164: "+18042343183",
-  ogImage: "/assets/photos/color-team-wide.jpg",
+  ogImage: "/assets/photos/avodah-richmond-cityscape.jpg",
 };
 
 const ROUTES = {

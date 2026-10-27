@@ -95,10 +95,12 @@ test("production build configuration keeps duplicate pages out of the index", ()
   }
 });
 
-test("preview form remains non-transmitting", () => {
+test("form is disabled until server configuration is confirmed", () => {
   const contact = read("contact.html");
-  assert.match(contact, /<form[^>]+action="#"[^>]+data-preview-form/);
+  assert.match(contact, /<form[^>]+action="\/api\/intake"[^>]+data-intake-form/);
+  assert.match(contact, /type="submit" disabled/);
   assert.match(read("js/site.js"), /e\.preventDefault\(\)/);
+  assert.match(read("api/intake.js"), /INTAKE_ENABLED === "true"/);
 });
 
 test("public build excludes source, tests, QA tools, and retired placeholders", () => {

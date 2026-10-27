@@ -4,6 +4,11 @@
   "buildCommand": "npm run build",
   "installCommand": "",
   "outputDirectory": "dist",
+  "functions": {
+    "api/intake.js": {
+      "maxDuration": 30
+    }
+  },
   "cleanUrls": false,
   "redirects": [
     {

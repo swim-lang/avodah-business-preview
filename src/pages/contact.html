@@ -17,8 +17,7 @@
         </div>
       </div>
 
-      <!-- Field names mirror the live Contact Form 7 form (#282) so it can be re-wired on WordPress. -->
-      <form class="form reveal-load" style="--d: .35s" action="#" method="post" data-preview-form>
+      <form class="form reveal-load" style="--d: .35s" action="/api/intake" method="post" data-intake-form>
         <div>
           <span class="eyebrow eyebrow--signal">Schedule a consultation</span>
           <h2 class="form__title">Tell us about your business.</h2>
@@ -31,8 +30,11 @@
         <div class="field"><label for="f-state">State *</label><select id="f-state" name="select_state" required><option value="Virginia">Virginia</option><option value="Other">Other</option></select></div>
         <div class="field"><label for="f-msg">Your message *</label><textarea id="f-msg" name="Message" maxlength="400" placeholder="Briefly, what are you working on? Forming a company, a deal, an agreement…" required></textarea></div>
         <label class="consent"><input type="checkbox" name="agreetocontact" value="1" required /><span>By submitting this form, you consent to being contacted by Avodah about your inquiry. Submitting this form does not create an attorney-client relationship. Do not send confidential information until Avodah confirms it can speak with you.</span></label>
-        <button class="btn btn--solid-signal" type="submit"><span class="btn__label">Send message</span><span class="btn__chip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span></button>
+        <div class="form-honeypot" aria-hidden="true"><label for="f-website">Leave this field empty</label><input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off" /></div>
+        <p class="form__delivery-note">Your inquiry is emailed to Avodah Business through our email provider, Resend. Please include only basic information, not confidential documents or sensitive details.</p>
+        <button class="btn btn--solid-signal" type="submit" disabled><span class="btn__label">Send message</span><span class="btn__chip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span></button>
         <p class="form__status" role="status" aria-live="polite"></p>
+        <noscript>Please call Avodah to make an inquiry. JavaScript is required for this form.</noscript>
       </form>
 
       <div class="offices offices--mobile">

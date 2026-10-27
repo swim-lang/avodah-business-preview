@@ -26,7 +26,7 @@
    - `SEO_INDEX=true`
    - `GA_MEASUREMENT_ID=G-XXXXXXXXXX`
    - `GOOGLE_SITE_VERIFICATION=...` only if HTML-tag verification is used; DNS verification is preferred for a Domain property.
-6. Replace the non-transmitting preview form with the approved secure form endpoint. Confirm recipients, reply handling, spam protection, retention, consent language, and a tested success state. Emit a GA4 lead event only after the backend confirms a successful submission.
+6. Activate and delivery-test the prepared Resend endpoint using `FORM-SETUP.md`. Confirm sender, recipients, reply handling, spam protection, retention, consent language, and a tested success state. The form is disabled until the server is configured; its GA4 lead event runs only after backend-confirmed acceptance.
 7. Confirm the Richmond and Leesburg office presentation, phone routing, staff roster, remaining Handshake prices, and all attorney credentials.
 8. Run attorney review and receive written publication approval.
 
